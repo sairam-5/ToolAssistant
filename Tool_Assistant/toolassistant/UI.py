@@ -11,8 +11,8 @@ if package_root not in sys.path:
 from main import ClaudeAgent, FLIGHT_SERVICE_URL, TRAIN_SERVICE_URL, HOTEL_SERVICE_URL, MAX_RECURSIONS
 from prompt import SYSTEM_PROMPT
 
-st.set_page_config(page_title="AI Travel Planner", layout="centered")
-st.title("AI Travel Planner")
+st.set_page_config(page_title="AI Tool Assistant", layout="centered") # Changed page title
+st.title("AI Tool Assistant") # Changed main title
 
 # Initialize AI agent and conversation history, persisting across app reruns.
 if 'agent' not in st.session_state:
@@ -32,7 +32,7 @@ for msg in st.session_state.messages:
             st.write(msg["content"])
 
 # Get user input from the chat box.
-user_query = st.chat_input("How can I assist you with your travel plans today?")
+user_query = st.chat_input("How can I help you today?") # Changed chat input placeholder
 
 if user_query:
     # Add user query to display history.
@@ -46,7 +46,7 @@ if user_query:
     # Add processed user input to the Bedrock conversation history.
     st.session_state.bedrock_conversation.append({"role": "user", "content": [{"text": processed_user_input}]})
 
-    with st.spinner("AI is planning your trip..."):
+    with st.spinner("AI is fetching information..."): # Changed spinner text
         current_recursion_depth = MAX_RECURSIONS
         response_finalized = False
 
